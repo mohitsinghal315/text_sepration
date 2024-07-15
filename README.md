@@ -1,12 +1,19 @@
 Objective
 
 The objective of this code is to:
-
-    Extract tables from a PDF using Camelot.
+Extract tables from a PDF using Camelot.
     Extract text blocks from the same PDF using PyMuPDF (Fitz).
     Normalize the coordinates of these extracted elements to ensure consistency.
     Remove text blocks that fall within the detected table boundaries.
     Display the filtered text and the detected tables in a Gradio interface.
+Camelot is used to read tables from the specified PDF file (pdf_file) on the specified page (page_number).
+The bounding boxes of the detected tables are stored in the table_bboxes list. Bounding boxes represent the coordinates of the rectangular area enclosing each table.
+
+PyMuPDF (Fitz) is used to open the PDF and extract text blocks from the specified page.
+The bounding boxes and text content of each block are stored in the text_blocks list.    
+
+Camelot and PyMuPDF use different coordinate systems. Camelot uses a bottom-up system, while PyMuPDF uses a top-down system.
+The bounding boxes from Camelot are converted to the top-down coordinate system used by PyMuPDF.
 
 The script uses two main libraries to work with PDF files: Camelot for finding tables and PyMuPDF (fitz) for extracting text. These libraries use different ways to describe where things are located on a page. Camelot measures positions from the bottom-left corner of the PDF page, while PyMuPDF measures from the top-left corner. Because of this difference, we need to adjust how we understand the positions of tables on the page.
 To ensure we accurately separate text from tables, we convert Camelot's coordinates (which start from the bottom-left) to match PyMuPDF's system (which starts from the top-left). This conversion involves adjusting the Y-coordinates of table bounding boxes to fit the page's height in PyMuPDF. Once these coordinates are aligned, we can effectively determine if each block of text overlaps with any table.
