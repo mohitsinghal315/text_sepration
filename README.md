@@ -1,52 +1,78 @@
+This project demonstrates a Python script for extracting tables and text from PDF documents. It utilizes Camelot for table extraction and PyMuPDF (Fitz) for text extraction, ensuring accurate separation and display of extracted content.
 Objective
 
-The objective of this code is to:
-Extract tables from a PDF using Camelot.
+The objective of this project is to:
+
+    Extract tables from a PDF using Camelot.
     Extract text blocks from the same PDF using PyMuPDF (Fitz).
-    Normalize the coordinates of these extracted elements to ensure consistency.
-    Remove text blocks that fall within the detected table boundaries.
-    Display the filtered text and the detected tables in a Gradio interface.
-    
-Camelot is used to read tables from the specified PDF file (pdf_file) on the specified page (page_number).
-The bounding boxes of the detected tables are stored in the table_bboxes list. Bounding boxes represent the coordinates of the rectangular area enclosing each table.
+    Normalize the coordinates of extracted elements for consistency across different libraries.
+    Remove text blocks that fall within detected table boundaries to ensure accurate text-table separation.
+    Display the filtered text and detected tables in a Gradio interface for interactive exploration.
 
-PyMuPDF (Fitz) is used to open the PDF and extract text blocks from the specified page.
-The bounding boxes and text content of each block are stored in the text_blocks list.    
-
-Camelot and PyMuPDF use different coordinate systems. Camelot uses a bottom-up system, while PyMuPDF uses a top-down system.
-The bounding boxes from Camelot are converted to the top-down coordinate system used by PyMuPDF.
-
-The script uses two main libraries to work with PDF files: Camelot for finding tables and PyMuPDF (fitz) for extracting text. These libraries use different ways to describe where things are located on a page. Camelot measures positions from the bottom-left corner of the PDF page, while PyMuPDF measures from the top-left corner. Because of this difference, we need to adjust how we understand the positions of tables on the page.
-To ensure we accurately separate text from tables, we convert Camelot's coordinates (which start from the bottom-left) to match PyMuPDF's system (which starts from the top-left). This conversion involves adjusting the Y-coordinates of table bounding boxes to fit the page's height in PyMuPDF. Once these coordinates are aligned, we can effectively determine if each block of text overlaps with any table.
-For text-table separation, the script uses a method to check if each text block is inside any of the adjusted table bounding boxes. If a text block overlaps with a table's area, it's filtered out and not included in the final extracted text. This ensures that only text outside of any detected tables is retained and presented to the user.
-By implementing this approach, the script ensures that the extracted information from PDFs is accurate and usable. It prevents mixing up text that belongs to tables with other textual content, thereby improving the reliability and clarity of the extracted data for further analysis or display. This methodical approach enhances the overall effectiveness of handling PDF documents programmatically.
-
-
-Explanation:
-
-    Extract Full Text:
-        Extract the full text from the specified page using PyMuPDF.
-
-    Extract Table Text:
-        For each table cell, convert Camelot coordinates to PyMuPDF coordinates.
-        Extract the text within these coordinates to get the table text.
-
-    Extract Remaining Text:
-        Redact the table areas to remove table text from the full text.
-        Extract the remaining text after redaction.
-
-    Gradio Interface:
-        Display the extracted table text and the remaining text in two separate columns using two gr.Textbox components.
-
+How It Works
 Libraries Used
 
-    Camelot: A Python library used for extracting tables from PDFs.
-    PyMuPDF (Fitz): A Python binding to the MuPDF library for PDF document handling.
-    Pandas: A data manipulation and analysis library.
-    Gradio: A library to create interactive web interfaces for machine learning mod
+    Camelot: Used for extracting tables from PDFs.
+    PyMuPDF (Fitz): Used for extracting text blocks from PDFs and converting coordinates.
+    Pandas: Used for data manipulation, particularly for handling table data.
+    Gradio: Used for creating interactive web interfaces to display extracted content.
 
+Workflow
 
+    Extract Tables Using Camelot:
+        Camelot reads tables from the specified PDF file on the specified page.
+        Bounding boxes of detected tables are collected to define their spatial locations.
 
+    Extract Text Blocks Using PyMuPDF (Fitz):
+        PyMuPDF opens the PDF file and extracts text blocks from the specified page.
+        Each text block's bounding box and text content are stored for further processing.
+
+    Normalize Coordinates:
+        Convert Camelot's bottom-up coordinate system to PyMuPDF's top-down system.
+        Adjust Y-coordinates of table bounding boxes to fit the PDF page's height in PyMuPDF.
+
+    Text-Table Separation:
+        Implement a method to check if each text block overlaps with any table's adjusted bounding box.
+        Filter out text blocks that overlap with table areas to retain only non-table text.
+
+    Gradio Interface:
+        Display the filtered text and the detected tables side by side in a Gradio interface.
+        Tables are presented using HTML formatting within the interface to ensure visibility and readability.
+
+Usage
+Installation
+
+    Clone the repository:
+
+    bash
+
+git clone https://github.com/your-username/pdf-table-text-extraction.git
+cd pdf-table-text-extraction
+
+Install dependencies:
+
+bash
+
+    pip install -r requirements.txt
+
+Running the Script
+
+bash
+
+python extract_pdf_content.py
+
+Follow the prompts to upload a PDF file and specify the page number for processing.
+Example Output
+
+    Filtered text extracted from the specified page, excluding text within detected tables.
+    Tables detected in the PDF displayed using HTML in the Gradio interface.
+
+Contributing
+
+Contributions are welcome! Please fork the repository, create a pull request, and suggest improvements or additional features.
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 
 
