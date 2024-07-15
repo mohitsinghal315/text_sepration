@@ -39,15 +39,6 @@ Workflow
         Display the filtered text and the detected tables side by side in a Gradio interface.
         Tables are presented using HTML formatting within the interface to ensure visibility and readability.
 
-Usage
-Installation
-
-    Clone the repository:
-
-    bash
-
-git clone https://github.com/your-username/pdf-table-text-extraction.git
-cd pdf-table-text-extraction
 
 Install dependencies:
 
