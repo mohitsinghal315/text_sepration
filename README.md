@@ -40,17 +40,7 @@ Workflow
         Tables are presented using HTML formatting within the interface to ensure visibility and readability.
 
 
-Install dependencies:
 
-bash
-
-    pip install -r requirements.txt
-
-Running the Script
-
-bash
-
-python extract_pdf_content.py
 
 Follow the prompts to upload a PDF file and specify the page number for processing.
 Example Output
