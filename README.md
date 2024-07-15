@@ -9,7 +9,7 @@ The objective of this project is to:
     Remove text blocks that fall within detected table boundaries to ensure accurate text-table separation.
     Display the filtered text and detected tables in a Gradio interface for interactive exploration.
 
-How It Works
+
 Libraries Used
 
     Camelot: Used for extracting tables from PDFs.
