@@ -67,13 +67,6 @@ Example Output
     Filtered text extracted from the specified page, excluding text within detected tables.
     Tables detected in the PDF displayed using HTML in the Gradio interface.
 
-Contributing
-
-Contributions are welcome! Please fork the repository, create a pull request, and suggest improvements or additional features.
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 
 
 
