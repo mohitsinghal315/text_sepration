@@ -1,0 +1,4 @@
+conda install -c conda-forge ghostscript
+conda install -c conda-forge python-ghostscript
+conda install -c conda-forge tk
+pip install camelot-py[cv]
