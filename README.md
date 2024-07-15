@@ -6,6 +6,7 @@ Extract tables from a PDF using Camelot.
     Normalize the coordinates of these extracted elements to ensure consistency.
     Remove text blocks that fall within the detected table boundaries.
     Display the filtered text and the detected tables in a Gradio interface.
+    
 Camelot is used to read tables from the specified PDF file (pdf_file) on the specified page (page_number).
 The bounding boxes of the detected tables are stored in the table_bboxes list. Bounding boxes represent the coordinates of the rectangular area enclosing each table.
 
